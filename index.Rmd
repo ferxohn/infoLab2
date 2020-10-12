@@ -1,0 +1,116 @@
+---
+title: "Teoría de la información"
+subtitle: "Entropía diferencial"
+author: "Julio César Ramírez Pacheco"
+date: "12/10/2020"
+output:
+  rmdformats::material:
+    highlight: kate
+    cards: false
+---
+
+
+```{r knitr_init, echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE}
+library(knitr)
+library(rmdformats)
+library(highcharter)
+
+## Global options
+options(max.print="75")
+opts_chunk$set(echo=TRUE,
+	             cache=TRUE,
+               prompt=FALSE,
+               tidy=TRUE,
+               comment=NA,
+               message=FALSE,
+               warning=FALSE)
+opts_knit$set(width=75)
+```
+
+
+
+
+# Entropía diferencial
+
+La entropía de Shannon como se mencionó en los artículos que se revisaron al inicio del curso se define como el valor esperado de $-\log(p_X(k))$, al cual se le llama sorpresa. Por lo tanto la entropía de Shannon para la variable aleatoria $X$ queda especificado por la siguiente fórmula:
+
+$$
+H(X) = - \sum_{k}{p_X(k)\log(p_X(k))}.
+$$
+Nótese que esta fórmula está definida para distribuciones discretas y por lo tanto para el caso de las variables aleatorias continuas se tiene que utilizar otra definición. Shannon, extendió la entropía definida arriba mediante una simple extensión de sumatoria a integral y obtuvo lo que se llama entropía diferencial de $X$, la cual está dada por:
+
+$$
+h(X) = -\int_{-\infty}^{+\infty}{f(x) \log(f(x)) \, dx}.
+$$
+Esta entropía, en principio, se utilizó para el cálculo de la entropía para distribuciones continuas aunque ahora existen alternativas más precisas para el cálculo de la entropía de distribuciones continuas.
+
+# Entropía diferencia de distribución uniforme
+
+Basándonos en lo anterior, calcularemos la entropía diferencial para algunas distribuciones conocidas y verificaremos el efecto que tienen ciertos parámetros en la entropía diferencial. Recordemos que la distribución uniforme tiene la siguiente fórmula:
+
+$$f(x) = \begin{cases}
+\frac{1}{b-a} & a < x < b\\
+0 & \mbox{en otro caso}
+\end{cases}
+$$
+
+El gráfico que define a la distribución uniforme $\mathcal{U}(2,4)$ es, por ejemplo, el siguiente:
+
+```{r uniforme}
+t <- seq(1, 5, length=200)
+original <- ifelse(t >= 2 & t <= 4, 1, 0)
+highchart() %>% hc_add_series(cbind(t,original), name="Densidad uniforme") %>% hc_add_theme(hc_theme_smpl()) %>% hc_title(text="f(x) = 1/(b-a)") %>% hc_subtitle(text="IT0322 - Teoría de la información") %>%
+  hc_xAxis(title=list(text="Tiempo")) %>% hc_yAxis(title=list(text="Valores de f(x)"))
+```
+
+La entropía diferencial de $\mathcal{U}(a,b)$ es por lo tanto:
+
+$$
+\begin{align}
+h(X) = & -\int_{a}^b{\left(\frac{1}{b-a}\right) \log(\frac{1}{b-a}) \, dx}\\
+ = & \frac{\log(b-a)}{b-a}\int_a^b{dx}\\
+ = & \frac{\log(b-a)}{b-a}\times (b-a)\\
+ h(X) = & \log(b-a)
+\end{align}
+$$
+Es decir, la entropía diferencial de la distribución uniforme es:
+$$
+h(X) = \log(b-a)
+$$
+Ahora sabemos que la varianza de la distribución uniforme es:
+$$
+Var(X) = \frac{(b-a)^2}{12}
+$$
+entonces, podemos relacionar la varianza de la distribución con la entropía. Supongamos que $a=0$ y $b$ es variables, entonces, el gráfico de la varianza y la entropía  son:
+```{r}
+b <- seq(1, 6, length=100)
+a <- 0
+varX <- (b-a)^2/12
+hX   <- log(b-a)
+highchart() %>% hc_add_series(cbind(b,hX), name="Entropía diferencial") %>% hc_add_series(cbind(b, varX), name="Varianza") %>% hc_add_theme(hc_theme_smpl()) %>% hc_title(text="Entropía y varianza de f(x) = 1/(b-a)") %>% hc_subtitle(text="IT0322 - Teoría de la información") %>% hc_xAxis(title=list(text="Tiempo")) %>% hc_yAxis(title=list(text="Valores"))
+```
+
+De lo anterior se puede concluir que la entropía incrementa con la varianza de la distribución uniforme, es decir mientras $b-a$ incremente también lo hará la entropía.
+
+## Ejercicios
+
+1. Suponga ahora que la varianza es constante pero la distribución se traslada sobre diversos puntos de $x$. ¿Cómo es el comportamiento de la entropía en este caso?. Sugerencia: grafique la traslación contra entropía para obtener la respuesta.
+
+2. Suponga que la densidad de una variable aleatoria $X$ está dada por: $$f(x) = \begin{cases}\frac{7}{4}-\frac{3}{2}x & 0< x <1\\ 0 & \mbox{otro caso}\end{cases}$$
+Hallar $h(X)$. 
+
+
+
+# Ejercicios
+
+1. Hallar la entropía para la siguiente función de densidad:
+```{r echo=FALSE, out.width="40%"}
+# Bigger fig.width
+include_graphics("image.svg")
+```
+
+2.- Para la densidad anterior, ¿cuál es la relación entre la varianza y la entropía? ¿Existe alguna relación entre la altura $h$ y la entropía $h(X)$?
+
+
+Fecha de entrega: Miércoles 14 de Octubre de 2020 a las 23:59 hrs.
+
