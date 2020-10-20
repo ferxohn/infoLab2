@@ -7,9 +7,12 @@ output:
   rmdformats::material:
     highlight: kate
     cards: false
+  pdf_document:
+    highlight: kate
 editor_options: 
   markdown: 
     wrap: 72
+always_allow_html: true
 ---
 
 ```{r knitr_init, echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE}
@@ -44,7 +47,9 @@ siguiente fórmula:
 
 $$
 H(X) = - \sum_{k}{p_X(k)\log(p_X(k))}.
-$$ Nótese que esta fórmula está definida para distribuciones discretas y
+$$
+
+Nótese que esta fórmula está definida para distribuciones discretas y
 por lo tanto para el caso de las variables aleatorias continuas se tiene
 que utilizar otra definición. Shannon, extendió la entropía definida
 arriba mediante una simple extensión de sumatoria a integral y obtuvo lo
@@ -52,9 +57,11 @@ que se llama entropía diferencial de $X$, la cual está dada por:
 
 $$
 h(X) = -\int_{-\infty}^{+\infty}{f(x) \log(f(x)) \, dx}.
-$$ Esta entropía, en principio, se utilizó para el cálculo de la
-entropía para distribuciones continuas aunque ahora existen alternativas
-más precisas para el cálculo de la entropía de distribuciones continuas.
+$$
+
+Esta entropía, en principio, se utilizó para el cálculo de la entropía
+para distribuciones continuas aunque ahora existen alternativas más
+precisas para el cálculo de la entropía de distribuciones continuas.
 
 # Entropía diferencia de distribución uniforme
 
@@ -82,17 +89,25 @@ highchart() %>% hc_add_series(cbind(t,original), name="Densidad uniforme") %>% h
 La entropía diferencial de $\mathcal{U}(a,b)$ es por lo tanto:
 
 $$
-\begin{align}
+\begin{aligned}
 h(X) = & -\int_{a}^b{\left(\frac{1}{b-a}\right) \log(\frac{1}{b-a}) \, dx}\\
  = & \frac{\log(b-a)}{b-a}\int_a^b{dx}\\
  = & \frac{\log(b-a)}{b-a}\times (b-a)\\
  h(X) = & \log(b-a)
-\end{align}
-$$ Es decir, la entropía diferencial de la distribución uniforme es: $$
+\end{aligned}
+$$
+
+Es decir, la entropía diferencial de la distribución uniforme es:
+
+$$
 h(X) = \log(b-a)
-$$ Ahora sabemos que la varianza de la distribución uniforme es: $$
+$$ Ahora sabemos que la varianza de la distribución uniforme es:
+
+$$
 Var(X) = \frac{(b-a)^2}{12}
-$$ entonces, podemos relacionar la varianza de la distribución con la
+$$
+
+entonces, podemos relacionar la varianza de la distribución con la
 entropía. Supongamos que $a=0$ y $b$ es variables, entonces, el gráfico
 de la varianza y la entropía son:
 
@@ -172,10 +187,11 @@ $$
 
 1.  Hallar la entropía para la siguiente función de densidad:
 
-```{r echo=FALSE, out.width="40%"}
-# Bigger fig.width
-include_graphics("image.svg")
-```
+    ```{r echo=FALSE, out.width="40%"}
+    # Bigger fig.width
+
+    include_graphics("image.png")
+    ```
 
 **Respuesta:**
 
@@ -241,7 +257,7 @@ fx <- function(A, B, x) {
 
 Para saber si el cálculo de esta función de densidad es correcto, se
 toma como ejemplo $a = 3$ y $b = 5$, y se calcula si
-$∫^{+∞}_{−∞}fx(x)dx = 1$.
+$\int^{+\infty}_{-\infty}fx(x)dx = 1$.
 
 ```{r Ejercicio 3}
 # Funcion de prueba
@@ -387,5 +403,7 @@ highchart() %>%
   hc_yAxis(title = list(text = "Entropía"))
 ```
 
-Para la altura esta se modifica muy visiblemente la entropía porque depende mucho de la distribución por lo que al modificar la altura estamos moviendo todos los demas valores de los cuales depende este.
+Para la altura esta se modifica muy visiblemente la entropía porque
+depende mucho de la distribución por lo que al modificar la altura
+estamos moviendo todos los demas valores de los cuales depende este.
 **(Explicación plixi)**
