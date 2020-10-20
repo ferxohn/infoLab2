@@ -19,11 +19,13 @@ library(highcharter)
 library(stationery)
 library(Ryacas)
 library(animation)
+library(DT)
+library(formatR)
 
 ## Global options
 options(max.print="75")
 opts_chunk$set(echo=TRUE,
-	             cache=TRUE,
+	             cache=FALSE,
                prompt=FALSE,
                tidy=TRUE,
                comment=NA,
@@ -272,7 +274,11 @@ highchart() %>%
 
 Con la función comprobada, finalmente se calcula la entropía diferencial
 de esta distribución:$$
-h(X) = -\int_a^c{\left(\frac{2(x - a)}{(b - a)(c - a)}\right)log\left(\frac{2(x - a)}{(b - a)(c - a)}\right)}dx - \int_c^b{\left(\frac{2(b - x)}{(b - a)(b - c)}\right)log\left(\frac{2(b - x)}{(b - a)(b - c)}\right)}dx
+h(X) = -\int_a^c{\left(\frac{2(x - a)}{(b - a)(c - a)}\right)log\left(\frac{2(x - a)}{(b - a)(c - a)}\right)}dx
+$$
+
+$$
+ - \int_c^b{\left(\frac{2(b - x)}{(b - a)(b - c)}\right)log\left(\frac{2(b - x)}{(b - a)(b - c)}\right)}dx
 $$
 
 donde el resultado de ambas integrales queda como
@@ -318,13 +324,21 @@ momento de la función) por medio de la fórmula
 $\sigma^2=\int_{-\infty}^\infty{(x - \mu)^2f(x)dx}$.
 
 $$
-\sigma^2 = \int_a^c{\left(x - \frac{a +b+c}{3}\right)^2\left(\frac{2(x - a)}{(b - a)(c - a)}\right)}dx + \int_c^b{\left(x - \frac{a +b+c}{3}\right)^2\left(\frac{2(b - x)}{(b - a)(b - c)}\right)}dx
+\sigma^2 = \int_a^c{\left(x - \frac{a +b+c}{3}\right)^2\left(\frac{2(x - a)}{(b - a)(c - a)}\right)}dx
+$$
+
+$$
++ \int_c^b{\left(x - \frac{a +b+c}{3}\right)^2\left(\frac{2(b - x)}{(b - a)(b - c)}\right)}dx
 $$
 
 donde el resultado de las integrales queda como
 
 $$
-\sigma^2 = \frac{(c-a)(3c^2-2c(2b+a)+2b^2+a^2)}{18(b-a)} - \frac{(c-b)(3c^2-2c(b+2a)+b^2+2a^2)}{18(b-a)}
+\sigma^2 = \frac{(c-a)(3c^2-2c(2b+a)+2b^2+a^2)}{18(b-a)}
+$$
+
+$$
+- \frac{(c-b)(3c^2-2c(b+2a)+b^2+2a^2)}{18(b-a)}
 $$
 
 que finalmente se reduce a
@@ -375,4 +389,3 @@ highchart() %>%
 
 Para la altura esta se modifica muy visiblemente la entropía porque depende mucho de la distribución por lo que al modificar la altura estamos moviendo todos los demas valores de los cuales depende este.
 **(Explicación plixi)**
-
