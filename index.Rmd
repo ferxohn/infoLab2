@@ -1,5 +1,5 @@
 ---
-title: "Teoría de la información"
+title: "Teoría de la información - Profr. Julio César Ramírez Pacheco"
 subtitle: "Entropía diferencial"
 author: "Vanessa Martínez Romero, Moisés Emiliano Arellano Ávila y Fernando Gómez Perera"
 date: "19/10/2020"
@@ -382,7 +382,9 @@ highchart() %>%
   hc_yAxis(title = list(text = "Valores"))
 ```
 
-Con este gráfico se puede concluir que mientras la varianza aumenta, la entropía también aumenta. La entropía aumenta de forma logarítmica, mientras que la varianza aumenta de forma exponencial.
+Con este gráfico se puede concluir que mientras la varianza aumenta, la
+entropía también aumenta. La entropía aumenta de forma logarítmica,
+mientras que la varianza aumenta de forma exponencial.
 
 Gráficamente la relación entre la altura $h$ y la entropía $h(X)$ se
 visualiza de la siguiente forma:
@@ -401,4 +403,5 @@ highchart() %>%
   hc_yAxis(title = list(text = "Entropía"))
 ```
 
-La altura sí modifica la entropía, y la relación entre ambas variables es que la entropía disminuye mientras la altura aumenta.
+La altura sí modifica la entropía, y la relación entre ambas variables
+es que la entropía disminuye mientras la altura aumenta.
