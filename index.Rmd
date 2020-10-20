@@ -4,11 +4,11 @@ subtitle: "Entropía diferencial"
 author: "Vanessa Martínez Romero, Moisés Emiliano Arellano Ávila y Fernando Gómez Perera"
 date: "19/10/2020"
 output:
+  pdf_document:
+    highlight: kate
   rmdformats::material:
     highlight: kate
     cards: false
-  pdf_document:
-    highlight: kate
 editor_options: 
   markdown: 
     wrap: 72
@@ -382,9 +382,7 @@ highchart() %>%
   hc_yAxis(title = list(text = "Valores"))
 ```
 
-Al modificar los valores la distribución de densidad de la varianza y
-entropia van a ir cambiando, mientras el valor maximo crezca, la
-varianza y la entropía crecen. **(Poner más explicación)**
+Con este gráfico se puede concluir que mientras la varianza aumenta, la entropía también aumenta. La entropía aumenta de forma logarítmica, mientras que la varianza aumenta de forma exponencial.
 
 Gráficamente la relación entre la altura $h$ y la entropía $h(X)$ se
 visualiza de la siguiente forma:
@@ -403,7 +401,4 @@ highchart() %>%
   hc_yAxis(title = list(text = "Entropía"))
 ```
 
-Para la altura esta se modifica muy visiblemente la entropía porque
-depende mucho de la distribución por lo que al modificar la altura
-estamos moviendo todos los demas valores de los cuales depende este.
-**(Explicación plixi)**
+La altura sí modifica la entropía, y la relación entre ambas variables es que la entropía disminuye mientras la altura aumenta.
